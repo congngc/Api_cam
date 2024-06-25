@@ -46,4 +46,5 @@ async def get_stream(websocket: WebSocket):
 if __name__ == '__main__':
     #uvicorn.run(app, host='localhost', port=8000)
     #uvicorn.run(app, host='192.168.1.12', port=8000)
-    uvicorn.run(app, port=8000, host='0.0.0.0')
+    #uvicorn.run(app, port=8000, host='0.0.0.0')
+    uvicorn.run()
