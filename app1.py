@@ -7,10 +7,11 @@ import cv2
 from ultralytics import YOLO
 
 app = FastAPI()
-#camera = cv2.VideoCapture(1, cv2.CAP_DSHOW)
-camera = cv2.VideoCapture(r"C:\Users\Admin\PythonLession\pic\people1.mp4")
+camera = cv2.VideoCapture(1)
+# camera = cv2.VideoCapture(r"C:\Users\Admin\PythonLession\pic\people1.mp4")
 templates = Jinja2Templates(directory="templates")
 
+model = YOLO(r"Api_cam/access/last.pt")
 
 @app.get('/')
 def index(request: Request):
@@ -28,7 +29,7 @@ async def get_stream(websocket: WebSocket):
                 break
             else:
 
-                model = YOLO(r"C:\Users\Admin\PythonLession\YoloModel\yolov8n.pt")
+                
                 result = model.predict(frame, device = [0])
 
                 frame = result[0].plot()
