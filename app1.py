@@ -11,7 +11,7 @@ camera = cv2.VideoCapture(1)
 # camera = cv2.VideoCapture(r"C:\Users\Admin\PythonLession\pic\people1.mp4")
 templates = Jinja2Templates(directory="templates")
 
-model = YOLO(r"Api_cam/access/last.pt")
+model = YOLO(r"./access/last.pt")
 
 @app.get('/')
 def index(request: Request):
@@ -36,7 +36,7 @@ async def get_stream(websocket: WebSocket):
                 cv2.rectangle(frame,(10,5),(40,300),(255,0,0),2)
 
                 ret, buffer = cv2.imencode('.jpg', frame)
-                await websocket.send_text("WEB CAM PHAM XUAN KY")
+                await websocket.send_text("frame này đã được giải")
                 await websocket.send_bytes(buffer.tobytes())
             await asyncio.sleep(0.03)
     except (WebSocketDisconnect, ConnectionClosed):
